@@ -54,11 +54,13 @@ const TOC = () => {
     }
   `);
 
-  const sortedComponentArray = data.allMdx.nodes.map((node) => ({
-    name: node.frontmatter.name,
-    url: `/projects/sistent/components/${node.frontmatter.component}`,
-  }));
-
+    const sortedComponentArray = data.allMdx.nodes
+     .filter((node) => node.frontmatter.name && node.frontmatter.component)
+     .map((node) => ({
+      name: node.frontmatter.name,
+      url: `/projects/sistent/components/${node.frontmatter.component}`,
+    }));
+  
   return (
     <TOCWrapper>
       <div className="go-back">
